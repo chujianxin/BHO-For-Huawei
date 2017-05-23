@@ -86,11 +86,14 @@ namespace COM.HPE
                 if (val != null && element.id == null)
                     element.name = val.ToString();
                 else
-                    element.name = element.id;
+                    element.name = ReplaceIDWithDot(element.id);
             }
             else
             {
-                element.name = element.id;
+                if (element.id == null)
+                    element.name = element.id;
+                else
+                    element.name = ReplaceIDWithDot(element.id);
             }
             if (!(evo.srcElement.getAttribute("value") is DBNull))
             {
@@ -203,11 +206,14 @@ namespace COM.HPE
                 if (val != null && element.id == null)
                     element.name = val.ToString();
                 else
-                    element.name = element.id;
+                    element.name = ReplaceIDWithDot(element.id);
             }
             else
             {
-                element.name = element.id;
+                if (element.id == null)
+                    element.name = element.id;
+                else
+                    element.name = ReplaceIDWithDot(element.id);
             }
             if (!(evo.srcElement.getAttribute("value") is DBNull))
             {
@@ -355,6 +361,31 @@ namespace COM.HPE
             str = str.Replace("$", "_");
 
             return str;
+        }
+        private string ReplaceIDWithDot(string id)
+        {
+           
+            string c = "";
+            if (id != null)
+            {
+                if (id.Contains('.'))
+                { 
+                    string[] a = id.Split('.');
+
+                    for (int i = 0; i < a.Count(); i++)
+                    {
+                        string x = a[i];
+                        x = x.Substring(0, 1).ToUpper() + x.Substring(1);
+                        c += x;
+                    }
+                }
+                else
+                {
+                    c = id;
+                }
+            }
+            
+            return c;
         }
         #endregion
     }
