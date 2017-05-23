@@ -60,14 +60,14 @@ namespace COM.HPE
             {
                 char[] MyChar = { '_', '/' };
                 record.fullUrl = fullurl.TrimEnd(MyChar);
-                record.map = ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]).TrimEnd(MyChar) + ".map";
+                record.map = RemoveLast_(ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]).TrimEnd(MyChar));
                 record.page = fullurl.Replace(record.website, "").TrimEnd(MyChar);
                 record.url = fullurl.Replace(record.website, "").TrimEnd(MyChar);
             }
             else
             {
                 record.fullUrl = fullurl;
-                record.map = ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]) + ".map";
+                record.map = RemoveLast_(ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]));
                 record.page = fullurl.Replace(record.website, "");
                 record.url = fullurl.Replace(record.website, "");
             }
@@ -190,7 +190,7 @@ namespace COM.HPE
             record.website = fullurl.Split('/')[0] + "//" + fullurl.Split('/')[2] + "/";
             record.fullUrl = fullurl;
             //System.Windows.Forms.MessageBox.Show(GetIframeName(evo));
-            record.map = ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]) + "_" + GetIframeName(evo) + ".map";
+            record.map = RemoveLast_(ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]) + "_" + GetIframeName(evo));
             record.page = fullurl.Replace(record.website, "");
             record.url = fullurl.Replace(record.website, "");
             record.iframesrc = GetIframeSrc(evo);
@@ -361,6 +361,16 @@ namespace COM.HPE
             str = str.Replace("$", "_");
 
             return str;
+        }
+        private string RemoveLast_(string str)
+        {
+            string ret = "";
+            if (str.EndsWith("_"))
+                ret = str.Remove(str.Length - 1, 1) + ".map";
+            else
+                ret = str + ".map";
+
+            return ret;
         }
         private string ReplaceIDWithDot(string id)
         {

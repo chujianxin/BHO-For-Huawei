@@ -18,11 +18,11 @@ namespace COM.HPE
                 {
                     if (index == 1)
                     {
-                        builder.Insert(0, ".//*[@id='" + ele.id.ToLower() + "']");
+                        builder.Insert(0, "//*[@id='" + ele.id  + "']");
                     }
                     else
                     {
-                        builder.Insert(0, ".//*[@id='" + ele.id.ToLower() + "'][" + index + "]");
+                        builder.Insert(0, "//*[@id='" + ele.id + "'][" + index + "]");
                     }
                     return builder.ToString();
                 }
@@ -30,11 +30,11 @@ namespace COM.HPE
                 {
                     if (index == 1)
                     {
-                        builder.Insert(0, "/" + ele.tagName.ToLower());
+                        builder.Insert(0, "/" + ele.tagName );
                     }
                     else
                     {
-                        builder.Insert(0, "/" + ele.tagName.ToLower() + "[" + index + "]");
+                        builder.Insert(0, "/" + ele.tagName  + "[" + index + "]");
                     }
                 }
                 ele = ele.parentElement;
@@ -50,11 +50,11 @@ namespace COM.HPE
 
                 if (index == 1)
                 {
-                    builder.Insert(0, "/" + ele.tagName.ToLower());
+                    builder.Insert(0, "/" + ele.tagName );
                 }
                 else
                 {
-                    builder.Insert(0, "/" + ele.tagName.ToLower() + "[" + index + "]");
+                    builder.Insert(0, "/" + ele.tagName  + "[" + index + "]");
                 }
 
                 ele = ele.parentElement;
