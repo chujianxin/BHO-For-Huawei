@@ -190,7 +190,7 @@ namespace COM.HPE
             record.website = fullurl.Split('/')[0] + "//" + fullurl.Split('/')[2] + "/";
             record.fullUrl = fullurl;
             //System.Windows.Forms.MessageBox.Show(GetIframeName(evo));
-            record.map = ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]) + "_" + GetIframeName(evo) + "_iframe.map";
+            record.map = ReplaceStr(fullurl.Replace(record.website, "").Split('?')[0]) + "_" + GetIframeName(evo) + ".map";
             record.page = fullurl.Replace(record.website, "");
             record.url = fullurl.Replace(record.website, "");
             record.iframesrc = GetIframeSrc(evo);
