@@ -16,6 +16,7 @@ namespace COM.HPE
                 int index = FindElementIndex(ele);
                 if (ele.id != null)
                 {
+                   
                     if (index == 1)
                     {
                         builder.Insert(0, "//*[@id='" + ele.id  + "']");
@@ -24,6 +25,7 @@ namespace COM.HPE
                     {
                         builder.Insert(0, "//*[@id='" + ele.id + "'][" + index + "]");
                     }
+                   
                     return builder.ToString();
                 }
                 else
@@ -39,6 +41,7 @@ namespace COM.HPE
                 }
                 ele = ele.parentElement;
             }
+            
             return builder.ToString();
         }
         private string FindFullXPath(IHTMLElement ele)
@@ -46,7 +49,7 @@ namespace COM.HPE
             StringBuilder builder = new StringBuilder();
             while (ele != null)
             {
-                int index = FindElementIndex(ele);
+                int index =  FindElementIndex(ele); 
 
                 if (index == 1)
                 {
@@ -70,20 +73,20 @@ namespace COM.HPE
             }
 
             int index = 1;
-            foreach (IHTMLElement candidate in (IHTMLElementCollection)parent.children)
-            {
-                //System.Windows.Forms.MessageBox.Show("11");
-
-                //System.Windows.Forms.MessageBox.Show(candidate.className);
-                if (candidate is IHTMLElement && candidate.tagName == element.tagName)
+            foreach (IHTMLElement ele in (IHTMLElementCollection)parent.children)
+            { 
+               
+                if (ele is IHTMLElement && ele.tagName == element.tagName && ele.className == element.className)
                 {
-                    if (candidate == element)
-                    {
+                       if (ele == element)
+                    { 
                         return index;
                     }
-                    index++;
+                
+                    index++; 
                 }
             }
+            
             return index;
         }
         private string FindCssPath(IHTMLElement ele)
@@ -91,7 +94,7 @@ namespace COM.HPE
              StringBuilder CssPath = new StringBuilder();
              while (ele != null)
              {
-                 int index = FindElementIndex(ele);
+                 int index =  FindElementIndex(ele); 
                  if (ele.id != null)
                  {
                      CssPath.Insert(0, '#' + ele.id+ " > ");
